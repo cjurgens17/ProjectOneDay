@@ -14,14 +14,14 @@ loginButton.addEventListener("click", (event) => {
 
     let loginInfo = {
         username: username,
-        password: password
+        password: password,
     }
 
     console.log(loginInfo);
 
     xhttp.onreadystatechange = function(){
 
-        if(this.readyState == 4 && xhttp == 200){
+        if(this.readyState == 4 && xhttp.status === 200){
             console.log(xhttp.responseText);
 
             let data = JSON.parse(xhttp.responseText);
@@ -38,10 +38,10 @@ loginButton.addEventListener("click", (event) => {
         }
     };
 
-    xhttp.open("POST",`http://localhost:8080/OneDay/homePage`);
+    xhttp.open("POST",`http://localhost:8080/OneDay/home`);
 
-    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
-    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.setRequestHeader("Access-Control-Allow-Origin","*");
+    xhttp.setRequestHeader("Content-Type","application/json");
 
     console.log(xhttp)
 

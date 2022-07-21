@@ -22,7 +22,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>horoscopeServlet</servlet-name>
-        <url-pattern>/homePage</url-pattern>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
     
     <servlet>
