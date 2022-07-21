@@ -4,22 +4,21 @@ public class CurrentUser {
 
     public static CurrentUser currentUser;
 
-    public static Integer employee_id;
+    public static String userId;
 
     public static String username;
 
-    public static String pass_word;
+    public static String password;
 
-    public static String employee_type;
+    public static String horoscope;
+
+    public static String mood;
+
+    public static String firstName;
 
 
-    public CurrentUser(Integer employee_id, String username, String pass_word, String employee_type){
-        CurrentUser.employee_id = employee_id;
-        CurrentUser.username = username;
-        CurrentUser.pass_word = pass_word;
-        CurrentUser.employee_type = employee_type;
+    public CurrentUser() {
     }
-
 
 
 }

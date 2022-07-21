@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
     <style>
         .main {
@@ -32,15 +34,15 @@
     <form>
         <label>Enter your username</label>
         <br>
-        <input type="text" name="username_input_sign_in" required>
+        <input type="text" id="username_input_sign_in" required>
         <br>
         <br>
         <label>Enter your password</label>
         <br>
-        <input type="password" name="password_input_sign_in" required>
+        <input type="password" id="password_input_sign_in" required>
         <br>
         <br>
-        <input type="submit" value="Sign In">
+        <input type="submit" id="button" value="Sign In">
     </form>
         <br>
         <br>
@@ -49,5 +51,6 @@
         <input type="submit" value="Register Now">
     </form>
 </div>
+<script src="Javascript/index.js"></script>
 </body>
 </html>

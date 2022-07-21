@@ -2,7 +2,7 @@ package com.models;
 
 public class User {
 
-    private String userId;
+    private Integer userId;
 
     private String username;
 
@@ -14,11 +14,11 @@ public class User {
 
     private String firstName;
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -74,7 +74,7 @@ public class User {
         this.firstName = firstName;
     }
 
-    public User(String userId, String username, String password, String horoscope, String mood, String firstName) {
+    public User(Integer userId, String username, String password, String horoscope, String mood, String firstName) {
         this.userId = userId;
         this.username = username;
         this.password = password;
