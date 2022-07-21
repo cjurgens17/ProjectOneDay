@@ -1,4 +1,5 @@
 let loginButton = document.getElementById("button");
+console.log(loginButton);
 
 loginButton.addEventListener("click", (event) => {
 
@@ -37,7 +38,7 @@ loginButton.addEventListener("click", (event) => {
         }
     };
 
-    xhttp.open("POST", `http://localhost:8080/OneDay/homePage`)
+    xhttp.open("POST",`http://localhost:8080/OneDay/homePage`);
 
     xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
     xhttp.setRequestHeader("Content-Type", "application/json");
