@@ -53,3 +53,11 @@ loginButton.addEventListener("click", (event) => {
 
 
 })
+
+let loginButton2 = document.getElementById("register_button");
+
+loginButton2.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    window.location.replace("register.html");
+})

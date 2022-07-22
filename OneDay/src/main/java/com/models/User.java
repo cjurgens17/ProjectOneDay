@@ -82,4 +82,16 @@ public class User {
         this.mood = mood;
         this.firstName = firstName;
     }
+
+    public User(String username, String password, String horoscope, String firstName) {
+        this.username = username;
+        this.password = password;
+        this.horoscope = horoscope;
+        this.firstName = firstName;
+    }
+
+    public User(String mood, Integer userId) {
+        this.userId = userId;
+        this.mood = mood;
+    }
 }

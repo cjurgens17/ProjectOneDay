@@ -1,3 +1,12 @@
+let userStorage = localStorage.getItem('currentUser');
+let currentUser = JSON.parse(userStorage);
+console.log(currentUser);
+let moodButton = document.getElementById("btn_id");
+
+let welcomeScreen = document.getElementById("welcome_screen");
+welcomeScreen.innerText = `Welcome ${currentUser.firstName}, Check Todays Horoscope`;
+
+
 let button = document.getElementById("button")
 
 button.addEventListener('click', async() => {
@@ -8,7 +17,7 @@ button.addEventListener('click', async() => {
 
 
 
-        const raw_response = await fetch(`http://sandipbgt.com/theastrologer/api/horoscope/pisces/today`);
+        const raw_response = await fetch(`http://sandipbgt.com/theastrologer/api/horoscope/${currentUser.horoscope}/today`);
 
         if(!raw_response.ok){
             throw new Error(raw_response.status)
@@ -27,29 +36,19 @@ button.addEventListener('click', async() => {
         var b = document.createElement('br');
         input.append(b);
 
-        // var id = document.createElement('h3');
-        // id.innerHTML = `ID: ${json_data.id}`;
-        // input.append(id);
-        // input.append(b);
+        var mood = document.getElementById("mood");
+        mood.innerText = `${json_data.meta.mood}`;
 
-        // var image = document.createElement('img');
-        // image.setAttribute("src", json_data.sprites.front_default);
-        // image.setAttribute("height", "300");
-        // image.setAttribute("width", "300");
+        // var c = document.createElement("BUTTON")
+        // c.setAttribute("id", "btn_id");
+        // c.setAttribute("width","250px");
+        // c.setAttribute("height","250px");
+        // c.innerText = "Click here to update mood";
+        // buttons.append(c);
+        // input.append(c);
 
-        // input.append(image);
-        // input.append(b);
-
-        // var line = document.createElement('hr');
-        // input.append(line);
-
-
-
-
-
-
-
-
+       
+       
 
 
 
@@ -61,3 +60,52 @@ button.addEventListener('click', async() => {
 
 
 })
+
+moodButton.addEventListener('click', (event) => {
+
+    event.preventDefault();
+
+
+    let xhttp = new XMLHttpRequest();
+
+    var mood2 = document.getElementById("mood");
+    let mood3 = mood2.innerText;
+
+    let username = currentUser.userId;
+
+    
+
+    let moodInfo = {
+        mood: mood3,
+        username: username, 
+    }
+
+    console.log(moodInfo);
+
+    xhttp.onreadystatechange = function(){
+
+        if(this.readyState == 4 && xhttp.status === 200){
+            console.log(xhttp.responseText);
+
+            let data = JSON.parse(xhttp.responseText);
+            console.log(data);
+
+
+        } else if(this.readyState == 4 && xhttp.status == 204){
+            console.log(xhttp.responseText)
+            alert("Failed to Login: Status Code - " + xhttp.status)
+        }
+    };
+
+    xhttp.open("POST",`http://localhost:8080/OneDay/mood`);
+
+    xhttp.setRequestHeader("Access-Control-Allow-Origin","*");
+    xhttp.setRequestHeader("Content-Type","application/json");
+
+    console.log(xhttp)
+
+    xhttp.send(JSON.stringify(moodInfo));
+
+
+})
+

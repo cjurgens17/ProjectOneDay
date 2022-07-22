@@ -1,8 +1,10 @@
 package com.persistence;
 
 import com.models.User;
+import com.utils.ConnectionControl;
 import com.utils.DAOInterface;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -11,20 +13,27 @@ import static com.utils.ConnectionControl.connection;
 
 public class UserDAO implements DAOInterface<User> {
 
+    Connection connection;
+
+    public UserDAO() {
+        connection = ConnectionControl.getConnection();
+    }
+
 
     @Override
     public Integer create(User user) {
 
         try {
-            String sql = "INSERT INTO users (user_id, username, pass_word, horoscope, mood, firstname) VALUES (default,?,?,?,?,?)";
+            String sql = "INSERT INTO Users (user_id, username, pass_word, horoscope, mood, firstname) VALUES (DEFAULT,?,?,?,DEFAULT,?)";
 
             PreparedStatement myStmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
+//            myStmt.setInt(1,user.getUserId());
             myStmt.setString(1, user.getUsername());
             myStmt.setString(2, user.getPassword());
             myStmt.setString(3, user.getHoroscope());
-            myStmt.setString(4,user.getMood());
-            myStmt.setString(5,user.getFirstName());
+//            myStmt.setString(5,user.getMood());
+            myStmt.setString(4,user.getFirstName());
 
 
             myStmt.executeUpdate();
@@ -33,7 +42,7 @@ public class UserDAO implements DAOInterface<User> {
 
             rs.next();
 
-            return rs.getInt(1);
+            return rs.getInt("user_id");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -51,6 +60,30 @@ public class UserDAO implements DAOInterface<User> {
 
     @Override
     public User update(User user) {
+
+        try{
+            String sql = "UPDATE Users SET mood=? WHERE user_id=?";
+
+            PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, user.getMood());
+            pstmt.setInt(2,user.getUserId());
+
+            pstmt.executeUpdate();
+
+            ResultSet rs = pstmt.getGeneratedKeys();
+
+            while (rs.next()){
+                user.setMood(rs.getString("mood"));
+            }
+
+            return user;
+
+        } catch (Exception e){
+            System.out.println("Error in HoroscopeUserDAO update() method "+e.getMessage());
+        }
+
+
+
         return null;
     }
 

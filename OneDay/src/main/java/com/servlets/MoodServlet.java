@@ -3,7 +3,6 @@ package com.servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.models.User;
 import com.persistence.UserDAO;
-import sun.security.krb5.internal.Ticket;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,28 +14,22 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class NewUserServlet extends HttpServlet {
+public class MoodServlet extends HttpServlet {
 
     UserDAO userDAO = new UserDAO();
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       // super.doGet(req, resp);
-        //get first name to send to horoscope page
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       // super.doPost(req, resp);
 
-        //create new user, send to index
-        registerNewUser(req,resp);
+            updateMood(req,resp);
+
+
 
 
     }
 
-
-    private void registerNewUser(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{
+    private void updateMood(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{
 
         BufferedReader br = req.getReader();
         String line = br.readLine();
@@ -77,16 +70,15 @@ public class NewUserServlet extends HttpServlet {
 
 
         }
-        String username = values.get(0);
-        String password = values.get(1);
-        String horoscope = values.get(2);
-        String nickname = values.get(3);
+        String mood = values.get(0);
+        Integer username = Integer.valueOf(values.get(1));
 
-        User user = new User(username, password, horoscope,nickname);
+
+        User user = new User(mood, username);
 
         //here we are doing the logic to actually log in
 
-         userDAO.create(user);
+        userDAO.update(user);
 
         if(user != null){
             System.out.println("user is not null");
@@ -112,5 +104,7 @@ public class NewUserServlet extends HttpServlet {
         }
 
     }
+
+
 
 }

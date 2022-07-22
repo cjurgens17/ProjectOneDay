@@ -8,13 +8,13 @@
         text-align: center;
         }
         h3 {
-        color: black;
+        color: red;
         }
         label {
-        color: black;
+        color: red;
         }
         body {
-         background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHpvb20lMjBiYWNrZ3JvdW5kJTIwb2ZmaWNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60');
+         background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR23grNFLR4rmGvwb6hN1NYwSOk3S9UJNt1xg&usqp=CAU');
          background-size: cover;
          }
     </style>
@@ -26,22 +26,27 @@
 <form>
     <label>Enter Username:</label>
     <br>
-    <input type="text" name="username_input" required>
+    <input type="text" id="username_input" required>
     <br>
     <br>
     <label>Enter Password:</label>
     <br>
-    <input type="password" name="password_input" required>
+    <input type="password" id="password_input" required>
     <br>
     <br>
-    <label>Enter Zodiac sign:</label>
+    <label>Enter Horoscope sign:</label>
     <br>
-    <input type="text" name="zodiac_sign" required>
+    <input type="text" id="zodiac_sign" required>
     <br>
     <br>
-    <input type="submit" value="Register Now">
+    <label>Enter Nickname</label>
+    <br>
+    <input type="text" id="first_name">
+    <br>
+    <br>
+    <input type="submit" id="new_user">
     </form>
 </div>
-
+<script src="Javascript/register.js"></script>
 </body>
 </html>

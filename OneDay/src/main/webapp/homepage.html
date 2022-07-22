@@ -5,9 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HorrorScopePage</title>
+    <style>
+        .main {
+            text-align:center;
+            }
+        label {
+            color: Black;
+        }
+        h1 {
+            color: Black;
+        }
+        h3 {
+            color: red;
+        }
+        body {
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR23grNFLR4rmGvwb6hN1NYwSOk3S9UJNt1xg&usqp=CAU');
+        background-size: cover;
+        }
+
+    </style>
 </head>
 <body>
-<h3>Welcome "users name"</h3>
+<div class="main">    
+<h3 id="welcome_screen">Welcome "users name"</h3>
 <br>
 
 
@@ -20,10 +40,20 @@
 
 
 <button id="button">Get Todays HorrorScope</button>
-
+<br>
+<br>
+<button id="btn_id">Change Your Mood!</button>
+<br>
+<br>
+<h1 id="mood"></h1>
+<br>
+<br>
 <p id="input"></p>
 
 
+
+
    <script src="Javascript/homepage.js"></script>
+</div>   
 </body>
 </html>
